@@ -1,0 +1,27 @@
+* {
+    font-family: Helvetica, Arial;
+}
+
+#root {
+    background: linear-gradient(#fca84e, #fc99b5);
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+form {
+    margin: 10px;
+    padding: 20px;
+    background-color: mistyrose;
+    color: gray;
+    border-radius: 25px;
+}
+
+#locationForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 30vw;
+    height: 51vw;
+}

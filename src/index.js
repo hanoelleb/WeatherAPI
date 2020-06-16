@@ -33,11 +33,6 @@ class WeatherForm extends React.Component {
              data.weather[0].description,
              data.main.temp];
 
-	 //console.log('report for ' + data.name + ' ,' + data.sys.country);
-         //console.log('weather: ' + data.weather[0].main);
-         //console.log('desc: ' + data.weather[0].description);
-         //console.log('temp: ' + data.main.temp);
-
 	 this.setState({report: true, data: wantedInfo});
     }
 
@@ -50,7 +45,7 @@ class WeatherForm extends React.Component {
 
     render() {
         return (
-	    <div>
+	    <div id='locationForm'>
                 <form onSubmit={this.sendQuery}>
                     <input id='city' type='text' onChange={this.handleChange} placeholder='Enter city' required></input>
 		    <input id='state' type='text'  onChange={this.handleChange} placeholder='Enter state code (optional)'></input>
