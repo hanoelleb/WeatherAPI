@@ -9,12 +9,19 @@
     color: white;
 }
 
+#header {
+    position: fixed;
+}
+
 form {
     margin: 10px;
     padding: 20px;
-    background-color: mistyrose;
+    background-color: peachpuff;
     color: gray;
     border-radius: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #locationForm {
@@ -24,4 +31,17 @@ form {
     flex-wrap: wrap;
     width: 30vw;
     height: 51vw;
+}
+
+#submitButton {
+    margin-top: 5px;
+    padding: 10px;
+    color: white;
+    background-color: hotpink;
+    border: none;
+    border-radius: 10px;
+}
+
+.inputField {
+    margin: 5px;
 }

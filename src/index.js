@@ -45,15 +45,21 @@ class WeatherForm extends React.Component {
 
     render() {
         return (
+	<div>
+	    <h1 id='header'>What's the Weather?</h1>
 	    <div id='locationForm'>
                 <form onSubmit={this.sendQuery}>
-                    <input id='city' type='text' onChange={this.handleChange} placeholder='Enter city' required></input>
-		    <input id='state' type='text'  onChange={this.handleChange} placeholder='Enter state code (optional)'></input>
-                    <input id='country' type='text'  onChange={this.handleChange} placeholder='Enter country code (optional)'></input>
-		    <input type='submit' value='Get Report'></input>
+                    <input id='city' className='inputField' type='text' onChange={this.handleChange} 
+		        placeholder='Enter city' required></input>
+		    <input id='state' className='inputField' type='text'  onChange={this.handleChange} 
+		        placeholder='Enter state code (optional)'></input>
+                    <input id='country' className='inputField' type='text'  onChange={this.handleChange} 
+		        placeholder='Enter country code (optional)'></input>
+		    <input type='submit' id='submitButton' value='Get Report'></input>
                 </form>
 		{ this.getWeather() }
             </div>
+	</div>
 	)
     };
 }
