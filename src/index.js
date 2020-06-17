@@ -10,8 +10,9 @@ class WeatherForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+	this.handleToggle = this.handleToggle.bind(this);
         this.sendQuery = this.sendQuery.bind(this);
-	this.state = ({city: '', state: '', country: '', report: false});
+	this.state = ({city: '', state: '', country: '', report: false, fah: false});
         this.getWeather = this.getWeather.bind(this);
     }
 
@@ -21,10 +22,26 @@ class WeatherForm extends React.Component {
         this.setState({[changed]: event.target.value});
     }
 
+    handleToggle(event) {
+	var unit = document.getElementById('fUnit');
+	if (unit.checked)
+	    this.setState({fah: true});
+	else 
+	    this.setState({fah: false});
+    }
+
     async sendQuery(event) {
          event.preventDefault();
 
-	 const response = await fetch(url + this.state.city + key);
+	 var units = '';
+	 if (this.state.fah) {
+	     units = '&units=imperial';
+	 } else {
+	     units = '&units=metric';
+	 }
+         
+	 var query = url + this.state.city + units + key;
+	 const response = await fetch(query);
 	 const data = await response.json();
 	 console.log(data);
 
@@ -39,13 +56,13 @@ class WeatherForm extends React.Component {
    getWeather() {
        if (this.state.report)
        {
-           return <WeatherReport data={this.state.data}/>
+           return <WeatherReport data={this.state.data} unit={this.state.fah}/>
        }
    }
 
     render() {
         return (
-	<div>
+	<div id='app'>
 	    <h1 id='header'>What's the Weather?</h1>
 	    <div id='locationForm'>
                 <form onSubmit={this.sendQuery}>
@@ -55,7 +72,11 @@ class WeatherForm extends React.Component {
 		        placeholder='Enter state code (optional)'></input>
                     <input id='country' className='inputField' type='text'  onChange={this.handleChange} 
 		        placeholder='Enter country code (optional)'></input>
-		    <input type='submit' id='submitButton' value='Get Report'></input>
+	            <input id='fUnit' type='radio' name='unit' value='0' onClick={this.handleToggle}></input>
+                          <label>'°F'</label><br></br>
+                    <input id='cUnit' type='radio' name='unit' value='0' onClick={this.handleToggle}></input>
+                          <label>'°C'</label>
+                    <input type='submit' id='submitButton' value='Get Report' style={{marginLeft: 30 + 'px'}}></input>
                 </form>
 		{ this.getWeather() }
             </div>
@@ -72,6 +93,13 @@ class WeatherReport extends React.Component {
          this.displayData = this.displayData.bind(this);
     }
 
+    displayTemp(temp) {
+        if (this.props.unit)
+	    return <h1>{temp + ' °F'}</h1>
+        else
+	    return <h1>{temp + ' °C'}</h1>
+    }
+
     displayData() {
         const data = this.props.data;
 	console.log('report for ' + data[0]);
@@ -82,7 +110,7 @@ class WeatherReport extends React.Component {
         return (
             <div>
                 <h1>{data[0]}</h1>
-                <h1>{data[3]}</h1>
+		{this.displayTemp(data[3])}
 		<h2>{data[1]}</h2>
                 <h3>{data[2]}</h3>
             </div>
