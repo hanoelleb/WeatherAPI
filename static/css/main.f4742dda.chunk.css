@@ -1,0 +1,2 @@
+*{font-family:Helvetica,Arial}#root{background:linear-gradient(#fca84e,#fc99b5);justify-content:center;color:#fff}#app,#root{display:flex}#app{flex-direction:column}form{margin:10px;padding:20px;background-color:#ffdab9;color:grey;border-radius:25px}#locationForm,form{display:flex;flex-wrap:wrap;justify-content:center;align-items:center}#locationForm{width:30vw;height:51vw}#submitButton{margin-top:5px;padding:10px;color:#fff;background-color:#ff69b4;border:none;border-radius:10px}.inputField{margin:5px 30px 5px 5px}
+/*# sourceMappingURL=main.f4742dda.chunk.css.map */
